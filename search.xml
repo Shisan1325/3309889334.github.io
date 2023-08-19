@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>测试啊</title>
+      <link href="/posts/2544765968/"/>
+      <url>/posts/2544765968/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>一个链接帖子</title>
       <link href="/posts/227552209/"/>
       <url>/posts/227552209/</url>
@@ -21,7 +34,7 @@
       <link href="/posts/2645272983/"/>
       <url>/posts/2645272983/</url>
       
-        <content type="html"><![CDATA[<p>测试用例</p><p><img src="/posts/2645272983/1.png" alt="一张测试用图"></p>]]></content>
+        <content type="html"><![CDATA[<p>测试用例</p><p><div style="text-align: center"><img src="/posts/2645272983/1.png" alt="一张测试用图"><span class="image-caption" style="display: inline-block; color: #9E9898; font-weight: bold; font-size: 12px; margin-top: 5px;">一张测试用图</span></div></p>]]></content>
       
       
       
