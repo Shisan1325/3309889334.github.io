@@ -488,6 +488,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
+.post__license {
+  margin: 3em 0 1em;
+  padding: 0.5rem 0.8rem;
+  border-left: 4px solid #2bbc8a;
+  background-color: #f5f5f5;
+  list-style: none;
+  word-break: break-all;
+}
+.post__license .fonter-link {
+  font-color: #d480aa;
+}
 .content {
   position: relative;
   display: flex;
@@ -1593,9 +1604,9 @@ pre code {
 }
 code {
   padding: 2px 4px;
-  background-color: #fbf9ed;
   border: 1px dotted #666;
   border-radius: 2px;
+  background-color: #fbf9ed;
   -webkit-border-radius: 2px;
 }
 .highlight {

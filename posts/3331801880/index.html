@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="description" content="1.杨辉三角 难度：容易  杨辉三角，又称帕斯卡三角，是一个由数字构成的三角形，其中的数字具有以下规律：每个数字都是它上方两个数字的和。  函数签名： def generate_pascals_triangle(rows: int) -&gt; list:     pass  输入：  rows：一个正整数，表示生成杨辉三角的行数。  输出：  返回一个生成的杨辉三角。  要求：  如果输入的参数不是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="值得苦练的Python经典题目（二）">
+<meta property="og:url" content="https://3309889334.github.io/posts/3331801880/index.html">
+<meta property="og:site_name" content="拾三のBlog">
+<meta property="og:description" content="1.杨辉三角 难度：容易  杨辉三角，又称帕斯卡三角，是一个由数字构成的三角形，其中的数字具有以下规律：每个数字都是它上方两个数字的和。  函数签名： def generate_pascals_triangle(rows: int) -&gt; list:     pass  输入：  rows：一个正整数，表示生成杨辉三角的行数。  输出：  返回一个生成的杨辉三角。  要求：  如果输入的参数不是">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-08-19T05:12:40.000Z">
+<meta property="article:modified_time" content="2023-08-19T13:51:24.991Z">
+<meta property="article:author" content="拾三">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>值得苦练的Python经典题目（二）</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+  <link rel="stylesheet" href="/js/prism/prism.css">
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="目录"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="顶部" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="上一篇" href="/posts/4135694272/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="返回顶部" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="分享文章" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://3309889334.github.io/posts/3331801880/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://3309889334.github.io/posts/3331801880/&text=值得苦练的Python经典题目（二）"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://3309889334.github.io/posts/3331801880/&title=值得苦练的Python经典题目（二）"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://3309889334.github.io/posts/3331801880/&is_video=false&description=值得苦练的Python经典题目（二）"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=值得苦练的Python经典题目（二）&body=Check out this article: https://3309889334.github.io/posts/3331801880/"><i class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://3309889334.github.io/posts/3331801880/&title=值得苦练的Python经典题目（二）"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://3309889334.github.io/posts/3331801880/&title=值得苦练的Python经典题目（二）"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://3309889334.github.io/posts/3331801880/&title=值得苦练的Python经典题目（二）"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://3309889334.github.io/posts/3331801880/&title=值得苦练的Python经典题目（二）"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://3309889334.github.io/posts/3331801880/&name=值得苦练的Python经典题目（二）&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://3309889334.github.io/posts/3331801880/&t=值得苦练的Python经典题目（二）"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92"><span class="toc-number">1.</span> <span class="toc-text"> 1.杨辉三角</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2fizz-buzz%E6%B8%B8%E6%88%8F"><span class="toc-number">2.</span> <span class="toc-text"> 2.Fizz Buzz游戏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2%E6%B8%B8%E6%88%8F"><span class="toc-number">3.</span> <span class="toc-text"> 3.分发饼干游戏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text"> 4.盛最多水的容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">5.</span> <span class="toc-text"> 5.最长递增子序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E8%B6%85%E7%BA%A7%E4%B8%91%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text"> 6.超级丑数</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+    
+    <div class="content index py4 ">
+        
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        值得苦练的Python经典题目（二）
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="p-name" itemprop="name">拾三</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2023-08-19T05:12:40.000Z" class="dt-published" itemprop="datePublished">2023-08-19</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="/categories/python/">python</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="/tags/python/" rel="tag">python</a>
+    </div>
+
+
+      
+  <div class="word-count">
+    <i class="fas fa-file-alt"></i>
+    字数：2.7k&nbsp;&nbsp;<i class="fas fa-clock"></i>预计耗时：11min
+  </div>
+
+    </div>
+  </header>
+  
+
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="1杨辉三角"><a class="markdownIt-Anchor" href="#1杨辉三角"></a> 1.杨辉三角</h2>
+<p>难度：<span style="background-color: #1E5D85; color: white; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; padding: 3px 10px; border-radius: 8px;">容易</span></p>
+<blockquote>
+<p>杨辉三角，又称帕斯卡三角，是一个由数字构成的三角形，其中的数字具有以下规律：每个数字都是它上方两个数字的和。</p>
+</blockquote>
+<p>函数签名：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">generate_pascals_triangle</span><span class="token punctuation">(</span>rows<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">list</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>输入：</p>
+<ul>
+<li>rows：一个正整数，表示生成杨辉三角的行数。</li>
+</ul>
+<p>输出：</p>
+<ul>
+<li>返回一个生成的杨辉三角。</li>
+</ul>
+<p>要求：</p>
+<ul>
+<li>如果输入的参数不是正整数，函数应抛出异常。</li>
+</ul>
+<p>示例代码：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">generate_pascals_triangle</span><span class="token punctuation">(</span>rows<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">list</span><span class="token punctuation">:</span>
+    <span class="token comment"># 检查输入参数是否为正整数</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>rows<span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token keyword">or</span> rows <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"参数必须为正整数"</span><span class="token punctuation">)</span>
+    
+    triangle <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>rows<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        row <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span> <span class="token keyword">if</span> j <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword">or</span> j <span class="token operator">==</span> i <span class="token keyword">else</span> row<span class="token punctuation">[</span>j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> row<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+        triangle<span class="token punctuation">.</span>append<span class="token punctuation">(</span>row<span class="token punctuation">)</span>
+    
+    <span class="token keyword">return</span> triangle
+
+<span class="token keyword">def</span> <span class="token function">print_pascals_triangle</span><span class="token punctuation">(</span>triangle<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    max_width <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">,</span> triangle<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> row <span class="token keyword">in</span> triangle<span class="token punctuation">:</span>
+        row_str <span class="token operator">=</span> <span class="token string">" "</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token builtin">map</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">,</span> row<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>row_str<span class="token punctuation">.</span>center<span class="token punctuation">(</span>max_width<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+<span class="token comment"># 测试用例</span>
+print_pascals_triangle<span class="token punctuation">(</span>generate_pascals_triangle<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token triple-quoted-string string">'''输出
+
+    1    
+   1 1   
+  1 2 1  
+ 1 3 3 1 
+1 4 6 4 1
+
+'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>说明：</p>
+<ul>
+<li>在<code>generate_pascals_triangle</code>函数中，首先检查输入参数<code>rows</code>是否为正整数，如果不是则抛出异常。</li>
+<li>然后使用循环来逐行生成杨辉三角，每行的数字是根据规律计算得到的，其中第一个和最后一个数字都为1，其余数字为上一行对应位置和前一个位置的数字之和。</li>
+<li>返回一个生成的杨辉三角。</li>
+</ul>
+<hr>
+<h2 id="2fizz-buzz游戏"><a class="markdownIt-Anchor" href="#2fizz-buzz游戏"></a> 2.Fizz Buzz游戏</h2>
+<p>难度：<span style="background-color: #1E5D85; color: white; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; padding: 3px 10px; border-radius: 8px;">容易</span></p>
+<blockquote>
+<p>Fizz Buzz是一个简单的数字游戏，游戏规则如下：从1开始，逐个数数，当遇到3的倍数时，报&quot;Fizz&quot;，当遇到5的倍数时，报&quot;Buzz&quot;，当遇到即是3的倍数又是5的倍数时，报&quot;Fizz Buzz&quot;，其他情况报当前数字。</p>
+</blockquote>
+<p>函数签名：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">fizz_buzz_game</span><span class="token punctuation">(</span>n<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">list</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>输入：</p>
+<ul>
+<li>n：一个正整数，表示游戏进行的次数。</li>
+</ul>
+<p>输出：</p>
+<ul>
+<li>返回一个包含n个字符串的列表，表示游戏中每次数数得到的结果。</li>
+</ul>
+<p>要求：</p>
+<ul>
+<li>如果输入的参数不是正整数，函数应抛出异常。</li>
+</ul>
+<p>示例代码：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">fizz_buzz_game</span><span class="token punctuation">(</span>n<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">list</span><span class="token punctuation">:</span>
+    <span class="token comment"># 检查输入参数是否为正整数</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token keyword">or</span> n <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">raise</span> ValueError<span class="token punctuation">(</span><span class="token string">"参数必须为正整数"</span><span class="token punctuation">)</span>
+    
+    result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> num <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> num <span class="token operator">%</span> <span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token keyword">and</span> num <span class="token operator">%</span> <span class="token number">5</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">"Fizz Buzz"</span><span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> num <span class="token operator">%</span> <span class="token number">3</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">"Fizz"</span><span class="token punctuation">)</span>
+        <span class="token keyword">elif</span> num <span class="token operator">%</span> <span class="token number">5</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">"Buzz"</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            result<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">return</span> result
+
+
+<span class="token comment"># 测试示例</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>fizz_buzz_game<span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出：['1', '2', 'Fizz', '4', 'Buzz', 'Fizz', '7', '8', 'Fizz', 'Buzz', '11', 'Fizz', '13', '14', 'Fizz Buzz']</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>说明：</p>
+<ul>
+<li>在<code>fizz_buzz_game</code>函数中，首先检查输入参数<code>n</code>是否为正整数，如果不是则抛出异常。</li>
+<li>然后使用循环从1到n进行遍历，根据游戏规则判断每个数字的情况，并将相应的结果添加到结果列表中。</li>
+<li>返回包含游戏结果的字符串列表。</li>
+</ul>
+<hr>
+<h2 id="3分发饼干游戏"><a class="markdownIt-Anchor" href="#3分发饼干游戏"></a> 3.分发饼干游戏</h2>
+<p>难度：<span style="background-color: #1E5D85; color: white; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; padding: 3px 10px; border-radius: 8px;">容易</span></p>
+<blockquote>
+<p>假设你是一位很棒的家长，想要给你的孩子们一些小饼干。但是，每个孩子最多只能给一块饼干。</p>
+<p>对每个孩子 <code>i</code>，都有一个胃口值 <code>g[i]</code>，这是能让孩子们满足胃口的饼干的最小尺寸；并且每块饼干 <code>j</code>，都有一个尺寸 <code>s[j]</code> 。如果 <code>s[j] &gt;= g[i]</code>，我们可以将这个饼干 <code>j</code> 分配给孩子 <code>i</code> ，这个孩子会得到满足。你的目标是尽可能满足越多数量的孩子，并输出这个最大数值。</p>
+</blockquote>
+<p><span style="background-color: #4FB33B; color: white; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; padding: 3px 10px; border-radius: 8px;">思路</span>：使用贪心算法来尽可能满足更多的孩子。</p>
+<p>函数签名：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">find_max_satisfied_children</span><span class="token punctuation">(</span>g<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> s<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>输入：</p>
+<ul>
+<li>g：一个整数列表，表示每个孩子的胃口值。</li>
+<li>s：一个整数列表，表示每块饼干的尺寸。</li>
+</ul>
+<p>输出：</p>
+<ul>
+<li>返回一个整数，表示能够满足的最大孩子数量。</li>
+</ul>
+<p>要求：</p>
+<ul>
+<li>输入的两个列表长度不超过1000，列表元素为正整数。</li>
+</ul>
+<p>示例代码：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">find_max_satisfied_children</span><span class="token punctuation">(</span>g<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">,</span> s<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+    <span class="token comment"># 将两个列表排序</span>
+    g<span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    s<span class="token punctuation">.</span>sort<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+    satisfied_children <span class="token operator">=</span> <span class="token number">0</span>
+    i<span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span>
+    <span class="token keyword">while</span> i <span class="token operator">&lt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>g<span class="token punctuation">)</span> <span class="token keyword">and</span> j <span class="token operator">&lt;</span> <span class="token builtin">len</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> s<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">>=</span> g<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span>
+            satisfied_children <span class="token operator">+=</span> <span class="token number">1</span>
+            i <span class="token operator">+=</span> <span class="token number">1</span>
+        j <span class="token operator">+=</span> <span class="token number">1</span>
+    
+    <span class="token keyword">return</span> satisfied_children
+
+
+<span class="token comment"># 测试示例</span>
+g <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+s <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>find_max_satisfied_children<span class="token punctuation">(</span>g<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出：1</span>
+<span class="token triple-quoted-string string">'''
+解释：
+你有三个孩子和两块小饼干，3个孩子的胃口值分别是：1,2,3。
+虽然你有两块小饼干，由于他们的尺寸都是1，你只能让胃口值是1的孩子满足。
+所以你应该输出1。
+'''</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>说明：</p>
+<ul>
+<li>在<code>find_max_satisfied_children</code>函数中，首先将两个列表<code>g</code>和<code>s</code>分别排序，以便从小到大进行匹配。</li>
+<li>使用贪心算法，使用两个指针<code>i</code>和<code>j</code>分别遍历<code>g</code>和<code>s</code>，当<code>j</code>对应的饼干尺寸能够满足<code>i</code>对应孩子的胃口时，增加满足孩子的数量，并将两个指针都向后移动。</li>
+<li>返回能够满足的最大孩子数量。</li>
+</ul>
+<hr>
+<h2 id="4盛最多水的容器"><a class="markdownIt-Anchor" href="#4盛最多水的容器"></a> 4.盛最多水的容器</h2>
+<p>难度：<span style="background-color: #EBA119; color: white; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; padding: 3px 10px; border-radius: 8px;">中等</span></p>
+<blockquote>
+<p>给定一个长度为 <code>n</code> 的整数数组 <code>height</code> 。有 <code>n</code> 条垂线，第 <code>i</code> 条线的两个端点是 <code>(i, 0)</code> 和 <code>(i, height[i])</code> 。</p>
+<p>找出其中的两条线，使得它们与 <code>x</code> 轴共同构成的容器可以容纳最多的水。</p>
+<p>返回容器可以储存的最大水量。</p>
+<p>**说明：**你不能倾斜容器。</p>
+</blockquote>
+<p><span style="background-color: #4FB33B; color: white; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; padding: 3px 10px; border-radius: 8px;">思路</span>：使用双指针法来求解可以容纳最多水的容器。</p>
+<p>函数签名：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">max_area</span><span class="token punctuation">(</span>height<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>输入：</p>
+<ul>
+<li>height：一个整数列表，表示每个垂线的高度。</li>
+</ul>
+<p>输出：</p>
+<ul>
+<li>返回一个整数，表示容器可以储存的最大水量。</li>
+</ul>
+<p>要求：</p>
+<ul>
+<li>输入的列表长度不超过10000，列表元素为非负整数。</li>
+</ul>
+<p>示例代码：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">max_area</span><span class="token punctuation">(</span>height<span class="token punctuation">:</span> <span class="token builtin">list</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+    left<span class="token punctuation">,</span> right <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>height<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span>
+    max_water <span class="token operator">=</span> <span class="token number">0</span>
+    
+    <span class="token keyword">while</span> left <span class="token operator">&lt;</span> right<span class="token punctuation">:</span>
+        h_left<span class="token punctuation">,</span> h_right <span class="token operator">=</span> height<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">,</span> height<span class="token punctuation">[</span>right<span class="token punctuation">]</span>
+        width <span class="token operator">=</span> right <span class="token operator">-</span> left
+        curr_water <span class="token operator">=</span> <span class="token builtin">min</span><span class="token punctuation">(</span>h_left<span class="token punctuation">,</span> h_right<span class="token punctuation">)</span> <span class="token operator">*</span> width
+        max_water <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>max_water<span class="token punctuation">,</span> curr_water<span class="token punctuation">)</span>
+        
+        <span class="token keyword">if</span> h_left <span class="token operator">&lt;</span> h_right<span class="token punctuation">:</span>
+            left <span class="token operator">+=</span> <span class="token number">1</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            right <span class="token operator">-=</span> <span class="token number">1</span>
+    
+    <span class="token keyword">return</span> max_water
+
+
+<span class="token comment"># 测试示例</span>
+height <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>max_area<span class="token punctuation">(</span>height<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出：49</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>说明：</p>
+<ul>
+<li>在<code>max_area</code>函数中，使用双指针法来求解可以容纳最多水的容器。</li>
+<li>初始化左指针<code>left</code>为0，右指针<code>right</code>为<code>height</code>列表的最后一个元素索引。</li>
+<li>使用<code>h_left</code>和<code>h_right</code>分别表示左右指针所指垂线的高度，<code>width</code>表示两个指针之间的宽度。</li>
+<li>计算当前容器的水量<code>curr_water</code>，并与已记录的最大水量<code>max_water</code>比较，取较大值。</li>
+<li>如果左指针所指垂线高度小于右指针所指垂线高度，则将左指针向右移动，否则将右指针向左移动。</li>
+<li>返回容器可以储存的最大水量。</li>
+</ul>
+<hr>
+<h2 id="5最长递增子序列"><a class="markdownIt-Anchor" href="#5最长递增子序列"></a> 5.最长递增子序列</h2>
+<p>难度：<span style="background-color: #EBA119; color: white; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; padding: 3px 10px; border-radius: 8px;">中等</span></p>
+<blockquote>
+<p>给定一个整数数组 <code>nums</code> ，找到其中最长严格递增子序列的长度。</p>
+<p><strong>子序列</strong> 是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，<code>[3,6,2,7]</code> 是数组 <code>[0,3,1,6,2,2,7]</code> 的子序列。</p>
+</blockquote>
+<p>函数签名：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">length_of_lis</span><span class="token punctuation">(</span>nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>输入：</p>
+<ul>
+<li>nums：整数列表</li>
+</ul>
+<p>输出：</p>
+<ul>
+<li>返回一个整数，表示最长递增子序列的长度。</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> List
+
+<span class="token keyword">def</span> <span class="token function">length_of_lis</span><span class="token punctuation">(</span>nums<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+    n <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nums<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token number">0</span>
+    
+    dp <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> n
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">></span> nums<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token builtin">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> dp<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">return</span> <span class="token builtin">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">)</span>
+
+
+<span class="token comment"># 测试示例</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>length_of_lis<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">101</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出：4</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>length_of_lis<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出：4</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>length_of_lis<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出：1</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>说明：</p>
+<ul>
+<li>在<code>length_of_lis</code>函数中，首先判断输入的数组<code>nums</code>是否为空，如果为空，则直接返回0。</li>
+<li>创建一个动态规划数组<code>dp</code>，长度为输入数组<code>nums</code>的长度，并将每个位置的初始值设为1。</li>
+<li>遍历数组<code>nums</code>，对于每个位置<code>i</code>(0 &lt;= i &lt; n)，再遍历位置<code>i</code>之前的每个位置<code>j</code>(0 &lt;= j &lt; i)。</li>
+<li>如果<code>nums[i] &gt; nums[j]</code>，则说明<code>nums[i]</code>可以接在<code>nums[j]</code>后面形成一个递增子序列，此时更新<code>dp[i]</code>的值为<code>dp[j] + 1</code>，表示以<code>nums[i]</code>结尾的最长递增子序列的长度。</li>
+<li>最后返回<code>dp</code>数组中的最大值，即为最长递增子序列的长度。</li>
+</ul>
+<hr>
+<h2 id="6超级丑数"><a class="markdownIt-Anchor" href="#6超级丑数"></a> 6.超级丑数</h2>
+<blockquote>
+<p><strong>超级丑数</strong> 是一个正整数，并满足其所有质因数都出现在质数数组 <code>primes</code> 中。</p>
+<p>给你一个整数 <code>n</code> 和一个整数数组 <code>primes</code> ，返回第 <code>n</code> 个 <strong>超级丑数</strong> 。</p>
+<p>题目数据保证第 <code>n</code> 个 <strong>超级丑数</strong> 在 <strong>32-bit</strong> 带符号整数范围内。</p>
+</blockquote>
+<p>函数签名：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">nth_super_ugly_number</span><span class="token punctuation">(</span>n<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> primes<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+    <span class="token keyword">pass</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>输入：</p>
+<ul>
+<li>n：整数，表示要求的超级丑数的位置，1 &lt;= n &lt;= 10^6</li>
+<li>primes：整数列表，表示质数数组，其中的每个元素都是质数，2 &lt;= len(primes) &lt;= 100，2 &lt;= primes[i] &lt;= 10^9</li>
+</ul>
+<p>输出：</p>
+<ul>
+<li>返回一个整数，表示第 <code>n</code> 个超级丑数。</li>
+</ul>
+<p>要求：</p>
+<ul>
+<li>时间复杂度应控制在合理范围内，以保证运行效率。</li>
+<li>考虑到 <code>n</code> 和 <code>primes</code> 的规模，可以使用最小堆和指针数组来优化计算过程。</li>
+</ul>
+<p>示例代码：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> typing <span class="token keyword">import</span> List
+
+<span class="token keyword">def</span> <span class="token function">nth_super_ugly_number</span><span class="token punctuation">(</span>n<span class="token punctuation">:</span> <span class="token builtin">int</span><span class="token punctuation">,</span> primes<span class="token punctuation">:</span> List<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">int</span><span class="token punctuation">:</span>
+    <span class="token comment"># 定义一个指针数组，用于记录每个质数对应的当前最小丑数的下标</span>
+    pointers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token builtin">len</span><span class="token punctuation">(</span>primes<span class="token punctuation">)</span>
+    
+    <span class="token comment"># 初始化结果数组和最小堆</span>
+    result <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+    min_heap <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">(</span>prime<span class="token punctuation">,</span> i<span class="token punctuation">)</span> <span class="token keyword">for</span> i<span class="token punctuation">,</span> prime <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>primes<span class="token punctuation">)</span><span class="token punctuation">]</span>
+    
+    <span class="token comment"># 生成超级丑数</span>
+    <span class="token keyword">while</span> <span class="token builtin">len</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">&lt;</span> n<span class="token punctuation">:</span>
+        <span class="token comment"># 取出当前最小的丑数及其对应的质数下标</span>
+        num<span class="token punctuation">,</span> idx <span class="token operator">=</span> min_heap<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        
+        <span class="token comment"># 更新指针数组中对应质数的下标</span>
+        pointers<span class="token punctuation">[</span>idx<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
+        
+        <span class="token comment"># 如果当前丑数与前一个丑数相同，跳过</span>
+        <span class="token keyword">if</span> num <span class="token operator">!=</span> result<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            result<span class="token punctuation">.</span>append<span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+        
+        <span class="token comment"># 更新最小堆</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>primes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">while</span> primes<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> result<span class="token punctuation">[</span>pointers<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&lt;=</span> num<span class="token punctuation">:</span>
+                pointers<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token number">1</span>
+            min_heap<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>primes<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">*</span> result<span class="token punctuation">[</span>pointers<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+        
+        <span class="token comment"># 调整最小堆，保持堆有序</span>
+        heapify<span class="token punctuation">(</span>min_heap<span class="token punctuation">)</span>
+    
+    <span class="token keyword">return</span> result<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+
+
+<span class="token comment"># 测试示例</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>nth_super_ugly_number<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">,</span> <span class="token number">19</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出：32</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>nth_super_ugly_number<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出：6</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>nth_super_ugly_number<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出：12</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>说明：</p>
+<ul>
+<li>在 <code>nth_super_ugly_number</code> 函数中，首先定义一个指针数组 <code>pointers</code>，用于记录每个质数对应的当前最小丑数的下标。</li>
+<li>初始化结果数组 <code>result</code> 和最小堆 <code>min_heap</code>，最小堆中的每个元素都是 <code>(prime, i)</code> 的形式，表示质数和其对应的下标。</li>
+<li>进入循环，直到结果数组的长度等于 <code>n</code> 时停止。</li>
+<li>在每次循环中，取出当前最小的丑数 <code>num</code> 及其对应的质数下标 <code>idx</code>。</li>
+<li>更新指针数组中对应质数的下标，将其加1。</li>
+<li>如果当前丑数与前一个丑数相同，跳过，只有当丑数不同时才将其添加到结果数组中。</li>
+<li>更新最小堆，对于每个质数，将其乘以对应丑数的下一个丑数，并更新该质数在最小堆中的位置。</li>
+<li>调整最小堆，保持堆有序。</li>
+<li>返回结果数组中的最后一个元素，即为第 <code>n</code> 个超级丑数。</li>
+</ul>
+
+  </div>
+  <div style="border-top: 2px dotted #8e8e8e96;height: 0px;margin: 20px 0px;text-align: center;width: 100%;">
+    <span style="background-color: #23b7e5;color: #fff;padding: 6px 10px;position: relative;top: -14px;border-radius: 14px;">
+      END
+    </span>
+  </div>
+  <div class="post__license">
+    <p>
+      <strong>本文作者：</strong>
+      <span>拾三</span>
+    </p>
+    <p>
+      <strong>本文链接： </strong><a class="fonter-link" href="https://3309889334.github.io/posts/3331801880/">https://3309889334.github.io/posts/3331801880/</a>
+    </p>
+      <strong>
+        <p>除非另有声明,文章默认采用 <a class="fonter-link" target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="署名-非商业性使用-相同方式共享（商业转载需获得授权，非商业转载请注明出处）">CC BY-NC-SA 4.0 许可协议</a>，如有转载请注意遵循。</p>
+      </strong>
+  </div>
+</article>
+
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="/">首页</a></li>
+        
+          <li><a href="/categories/">分类</a></li>
+        
+          <li><a href="/tags/">标签</a></li>
+        
+          <li><a href="/archives/">归档</a></li>
+        
+          <li><a href="/search/">搜索</a></li>
+        
+          <li><a href="/about/">关于</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E6%9D%A8%E8%BE%89%E4%B8%89%E8%A7%92"><span class="toc-number">1.</span> <span class="toc-text"> 1.杨辉三角</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2fizz-buzz%E6%B8%B8%E6%88%8F"><span class="toc-number">2.</span> <span class="toc-text"> 2.Fizz Buzz游戏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E5%88%86%E5%8F%91%E9%A5%BC%E5%B9%B2%E6%B8%B8%E6%88%8F"><span class="toc-number">3.</span> <span class="toc-text"> 3.分发饼干游戏</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text"> 4.盛最多水的容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">5.</span> <span class="toc-text"> 5.最长递增子序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%E8%B6%85%E7%BA%A7%E4%B8%91%E6%95%B0"><span class="toc-number">6.</span> <span class="toc-text"> 6.超级丑数</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://3309889334.github.io/posts/3331801880/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://3309889334.github.io/posts/3331801880/&text=值得苦练的Python经典题目（二）"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://3309889334.github.io/posts/3331801880/&title=值得苦练的Python经典题目（二）"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://3309889334.github.io/posts/3331801880/&is_video=false&description=值得苦练的Python经典题目（二）"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=值得苦练的Python经典题目（二）&body=Check out this article: https://3309889334.github.io/posts/3331801880/"><i class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://3309889334.github.io/posts/3331801880/&title=值得苦练的Python经典题目（二）"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://3309889334.github.io/posts/3331801880/&title=值得苦练的Python经典题目（二）"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://3309889334.github.io/posts/3331801880/&title=值得苦练的Python经典题目（二）"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://3309889334.github.io/posts/3331801880/&title=值得苦练的Python经典题目（二）"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://3309889334.github.io/posts/3331801880/&name=值得苦练的Python经典题目（二）&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://3309889334.github.io/posts/3331801880/&t=值得苦练的Python经典题目（二）"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    拾三
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="/">首页</a></li><!--
+     --><!--
+       --><li><a href="/categories/">分类</a></li><!--
+     --><!--
+       --><li><a href="/tags/">标签</a></li><!--
+     --><!--
+       --><li><a href="/archives/">归档</a></li><!--
+     --><!--
+       --><li><a href="/search/">搜索</a></li><!--
+     --><!--
+       --><li><a href="/about/">关于</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+<script src="/js/prism/prism.js" async></script>
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板！\">";
+    btn += '<i class="fa-regular fa-clone"></i>';
+    btn += '</span>';
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功！");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Disqus Comments -->
+
+<!-- utterances Comments -->
+
+</body>
+</html>
