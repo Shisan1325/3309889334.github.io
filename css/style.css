@@ -497,7 +497,7 @@ body {
   word-break: break-all;
 }
 .post__license .fonter-link {
-  font-color: #d480aa;
+  color: #d480aa;
 }
 .content {
   position: relative;
