@@ -1085,6 +1085,17 @@ body {
   margin-left: 0;
   list-style-type: none;
 }
+.post-list .post-item .content-fooder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.post-list .post-item .content-fooder .read-more {
+  margin-bottom: 0;
+}
+.post-list .post-item .content-fooder .meta {
+  margin-top: 0;
+}
 .post-list .post-item .meta {
   display: block;
   margin-right: 16px;
