@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>markdown格式展示</title>
+      <link href="/posts/1094186602/"/>
+      <url>/posts/1094186602/</url>
+      
+        <content type="html"><![CDATA[<p>123123</p><p>啊啊</p><p>&lt;%- tree_archive(site.posts) %&gt;</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> markdown </tag>
+            
+            <tag> 博客优化 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>值得苦练的Python经典题目（二）</title>
       <link href="/posts/3331801880/"/>
       <url>/posts/3331801880/</url>

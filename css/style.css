@@ -1096,6 +1096,9 @@ body {
 .post-list .post-item .content-fooder .meta {
   margin-top: 0;
 }
+.post-list .post-item .post-item-wrapper {
+  width: 100%;
+}
 .post-list .post-item .meta {
   display: block;
   margin-right: 16px;
