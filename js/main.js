@@ -135,3 +135,5 @@ document.querySelector('.content.e-content').addEventListener('copy', function (
     }, 3000);
   }
 });
+
+
