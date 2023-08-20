@@ -1126,7 +1126,7 @@ article header .author {
 article header .postdate {
   display: inline;
 }
-article .content h2:before {
+article .content h2:not(.SA-h2):before {
   position: absolute;
   top: -4px;
   left: -1rem;
@@ -1134,6 +1134,9 @@ article .content h2:before {
   content: "#";
   font-weight: bold;
   font-size: 1.2rem;
+}
+article .content .SA-h2 {
+  font-size: 20px;
 }
 article .content img,
 article .content video {
