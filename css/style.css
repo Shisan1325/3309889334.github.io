@@ -496,6 +496,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
+.card {
+  margin-top: 30px;
+  border-radius: 10px;
+  border-style: dashed;
+  border-color: #7d7676;
+  border-width: 1px;
+}
 .post__license {
   margin: 3em 0 1em;
   padding: 0.5rem 0.8rem;
@@ -1085,6 +1092,15 @@ body {
   margin-left: 0;
   list-style-type: none;
 }
+.post-list .post-item .post-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.post-list .post-item .post-title {
+  display: block;
+  margin-top: 0;
+}
 .post-list .post-item .content-fooder {
   display: flex;
   justify-content: space-between;
@@ -1098,6 +1114,14 @@ body {
 }
 .post-list .post-item .post-item-wrapper {
   width: 100%;
+  border-radius: 10px; /* 设置圆角大小 */
+  border: 1px dashed #666; /* 设置虚线边框的宽度和颜色 */
+  margin: 1rem 10px;
+  padding: 0.5em 10px;
+  background: #fbfbf5;
+  color: #666;
+  quotes: "\201C" "\201D" "\2018" "\2019";
+  font-weight: bold;
 }
 .post-list .post-item .meta {
   display: block;
@@ -1277,6 +1301,22 @@ article .content .caption {
 #archive .post-year {
   list-style-type: none;
 }
+#archive .timenode {
+  margin-top: 30px;
+  border-radius: 10px;
+  border-style: dashed;
+  border-color: #7d7676;
+  border-width: 1px;
+  text-align: center;
+}
+#archive .timenode .data-item {
+  width: 95%;
+  margin: 0 auto;
+}
+#archive .timenode .item {
+  display: block;
+  margin-top: 0;
+}
 #archive .post-list {
   padding: 0;
 }
@@ -1285,12 +1325,19 @@ article .content .caption {
   margin-left: 0;
   list-style-type: none;
 }
+#archive .post-list .post-item .content-fooder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#archive .post-list .post-item .read-more {
+  margin-bottom: 0;
+}
 #archive .post-list .post-item .meta {
-  display: block;
-  margin-right: 16px;
-  min-width: 100px;
-  color: #666;
-  font-size: 14px;
+  margin-top: 0;
+}
+#archive .post-list .post-item div {
+  display: inline-block;
 }
 @media (min-width: 480px) {
   #archive .post-list .post-item {
